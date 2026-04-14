@@ -1,0 +1,42 @@
+openapi: 3.1.0
+
+info:
+  title: Ingredient-openapi
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+paths:
+  /Ingredient/{id}:
+    get:
+      description: return ingredient by id
+      operationId: getIngredientById
+
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingredient'
+components:
+  schemas:
+    Ingredient:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+          enum: [VEGETABLE, ANIMAL, OTHER, DAIRY]
